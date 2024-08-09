@@ -21,7 +21,34 @@ public class App {
         * Controlar errores retornando -1
     */
     //------------------------------------------------------------------
-    
+    public static int calcularValorHora(String tipoVehiculo, int cantidadHoras){
+
+        int valorNetoHora = 0;
+        int valorAdicion = 0;
+
+        switch (tipoVehiculo) {
+            case "C":
+                valorNetoHora = cantidadHoras * 5000;
+                break;
+            case "M":
+                valorNetoHora = cantidadHoras * 3000;
+                break;
+            case "B":
+                valorNetoHora = cantidadHoras * 1000;
+                break;
+            default:
+                return -1;
+        }
+
+        if (cantidadHoras > 3) {
+            valorAdicion = (cantidadHoras - 3) * 2000;
+        }
+        else if(cantidadHoras <= 0){
+            return -1;
+        }
+
+        return valorNetoHora + valorAdicion;
+    }
 
 
     //------------------------------------------------------------------
@@ -36,7 +63,24 @@ public class App {
         * Controlar errores retornando -1
     */
     //------------------------------------------------------------------
-    
+    public static int calcularDescuento(int valorTotalHoras, int esEstudiante, int cantidadHoras){
+        
+        int valorDescuento = 0;
+
+        if(cantidadHoras > 4){
+            if (esEstudiante == 1){
+                valorDescuento = (int)((float)valorTotalHoras * 0.35f);
+            }
+            else if(esEstudiante == 1){
+                valorDescuento = (int)((float)valorTotalHoras * 0.30f);
+            }
+            else{
+                return -1;
+            }
+        }
+        
+        return valorDescuento;
+    }
 
 
     //------------------------------------------------------------------
@@ -49,7 +93,9 @@ public class App {
             - Un entero representando el valor del total de la factura incluyendo el iva
     */
     //------------------------------------------------------------------
-    
+    public static int calcularFactura(int valorTotal, int valorDescuento){
+        return (int)((valorTotal + valorDescuento) * 1.19f);
+    }
 
 
     //------------------------------------------------------------------
